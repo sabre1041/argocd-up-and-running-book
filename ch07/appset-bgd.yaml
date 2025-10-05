@@ -11,15 +11,17 @@ spec:
         gitRepo: https://github.com/christianh814/gitops-examples
         appPath: applicationsets/list-generator/v0.2/k8s/overlays
         appBranch: main
+        server: https://192.168.122.80:6443
       - overlay: green
         gitRepo: https://gitlab.com/christianh814/test-applicationsets.git
         appPath: list-generator/k8s/overlays
         appBranch: main
+        server: https://kubernetes.default.svc
   template:
     metadata:
       name: 'bgd-{{overlay}}'
     spec:
-      project: default
+      project: learning
       syncPolicy:
         automated:
           prune: true
@@ -35,5 +37,5 @@ spec:
         targetRevision: '{{appBranch}}'
         path: '{{appPath}}/{{overlay}}'
       destination:
-        server: https://kubernetes.default.svc
+        server: '{{server}}'
         namespace: 'bgd-{{overlay}}'
