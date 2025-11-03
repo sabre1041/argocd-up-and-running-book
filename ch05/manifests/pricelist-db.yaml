@@ -31,7 +31,7 @@ spec:
         - name: MYSQL_USER
           value: pricelist
         - name: MYSQL_RANDOM_ROOT_PASSWORD
-          value: yes
+          value: "yes"
         volumeMounts:
         - mountPath: /var/lib/mysql/data
           name: mysql-db
